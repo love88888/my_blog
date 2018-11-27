@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block header %}
+  <div class='jumbotron'>
+      <h1>欢迎</h1>
+  </div>
+{% endblock header%}
+
+{% block content %}
+  <h2>
+    <a href="{% url 'users:login' %}">Register an account</a>
+  </h2>
+    <h1><a href="">文章</a></h1>
+    {% for article in articles %}
+        <a href="">{{ article.title }}</a>
+        <br/>
+    {% endfor %}
+
+{% endblock content%}
+

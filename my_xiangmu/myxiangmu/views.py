@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from myxiangmu.models import Blog, Category, Tag
 
 from django.views import View
-
+from . import models
 
 # class IndexView(View):
 #     """
@@ -15,13 +15,15 @@ from django.views import View
 #             'all_blog': all_blog,
 #         })
 
-def index(request):
-    return render(request, 'index.html', context={
-                      'title': '我的博客首页',
-                      'welcome': '欢迎访问我的博客首页'
-                  })
-
-
-
 # def index(request):
-#     return HttpResponse('欢迎访问我的博客')
+#     return render(request, 'index.html', context={
+#                       'title': '游圈',
+#                       'welcome': '欢迎访问博客首页'
+#                   })
+
+
+
+def index(request):
+     # 获取所有的条数
+    articles = models.Blog.objects.all()
+    return render(request, 'index.html', {'articles':articles})

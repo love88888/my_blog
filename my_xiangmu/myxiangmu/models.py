@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.utils import timezone
 # Create your models here.
 class Category(models.Model):
     """
@@ -29,7 +30,7 @@ class Tag(models.Model):
         return self.name
 
 
-from django.utils import timezone
+
 
 class Blog(models.Model):
     """
@@ -37,7 +38,7 @@ class Blog(models.Model):
     """
     title = models.CharField(verbose_name='标题', max_length=100)
     content = models.TextField(verbose_name='正文', default='')
-    author = models.CharField(verbose_name='作者', max_length=16)
+    owner = models.ForeignKey(User,verbose_name='作者', on_delete=models.CASCADE,default='')
     create_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
     modify_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     click_nums = models.IntegerField(verbose_name='点击量', default=0)
@@ -51,3 +52,25 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+# class  look_essay(models.Model):
+#     '''
+#     浏览文章记录表
+#     '''
+#     look_title = models.ForeignKey(Blog,verbose_name='浏览文章ID',on_delete=models.CASCADE)
+#     look_time = models.DateTimeField(verbose_name='浏览的时间',default=timezone.now)
+
+      # class Meta:
+      #     verbose_name = "浏览记录"
+      #     verbose_name_plural = verbose_name
+#
+#     def __str__(self):
+#        return self.look_title
+
+# class collect_essay(models.Model):
+#       '''
+#       收藏文章的表
+#       '''
+#       collect_title= models.ForeignKey()
+      # class Meta:
+      #     verbose_name = "浏览记录"
+      #     verbose_name_plural = verbose_name
