@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+{#        遍历所有文章#}
+        {% for b in blogs %}
+{#            遍历每篇文章#}
+
+        <a href="/blog/{{ b.id }}/">{{ b.title }}</a>
+        <h5>{{ b.content |truncatechars:200 }}</h5>
+            <h5> 作者:{{b.owner}}</h5>
+            <h5>发表时间:{{b.create_time}}</h5>
+            <h5>点击量:{{b.click_nums}}</h5>
+
+        {% endfor %}
+    </div>
+</body>
+</html>

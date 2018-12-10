@@ -1,19 +1,48 @@
 {% extends 'base.html' %}
-{% block header %}
-  <div class='jumbotron'>
-      <h1>欢迎</h1>
-  </div>
-{% endblock header%}
+{% block css %}
+    <style>
+    #content_index{
+       font-size:18px;
+       color:black;
+    }
+    .title h5{
+        height:23px ;
+        width:200px;
+        float: left
+    }
+    </style>
+{% endblock %}
 
 {% block content %}
-  <h2>
-    <a href="{% url 'users:login' %}">Register an account</a>
-  </h2>
-    <h1><a href="">文章</a></h1>
+{#    <h1><a href="{% url 'myxiangmu:article' %}">文章</a></h1>#}
+{#　　　文章分类搜索#}
+    <h2>分类</h2>
+    {% for c in categorys %}
+        <a href="/category/{{ c.id }}">{{ c }}</a>
+    {% endfor %}
+    <h3>========================</h3>
+    <h2>文章</h2>
+{#    文章的详情页#}
     {% for article in articles %}
-        <a href="">{{ article.title }}</a>
+        <div id="content_index">
+           <div>
+               {{ username }}
+               <a href="/blog/{{ article.id }}/">{{ article.title }}</a>
+           </div>
+            <div>
+                <h5>正文:{{article.content |truncatechars:200}}</h5>
+            </div>
+            <div class='title'>
+                <h5> 作者:{{article.owner}}</h5>
+                <h5>发表时间:{{article.create_time}}</h5>
+                <h5>点击量:{{article.click_nums}}</h5>
+            </div>
+        </div>
+
         <br/>
     {% endfor %}
+
+
 
 {% endblock content%}
 

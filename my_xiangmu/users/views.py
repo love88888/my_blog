@@ -1,12 +1,15 @@
-from django.shortcuts import render
+from django.contrib import auth
+from django.forms import Form
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
-#
-def login(request):
-    return  render(request, "users/login.html")
 
+
+# def login(request):
+#     return  render(request, "users/login.html")
+#
 def logout_view(request):
 
     logout(request)
@@ -32,3 +35,24 @@ def register(request):
 
     context = {'form': form}
     return render(request, 'users/register.html', context)
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return redirect(reverse('login:home'))
+    else:
+        return render(request, 'login.html', {
+            'username': username,
+            'password': password,
+        })
+
+
+
+
+

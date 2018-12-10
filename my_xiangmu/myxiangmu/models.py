@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+
 # Create your models here.
 class Category(models.Model):
     """
@@ -74,3 +75,16 @@ class Blog(models.Model):
       # class Meta:
       #     verbose_name = "浏览记录"
       #     verbose_name_plural = verbose_name
+
+class Comment(models.Model):
+    '''
+      评论表
+    '''
+    # ForeignKey(User,verbose_name='昵称',on_delete=models.CASCADE)
+    username = models.CharField(verbose_name='昵称',max_length=10)
+    content = models.TextField(verbose_name='评论内容')
+    created_time = models.DateTimeField(verbose_name='评论时间',auto_now_add=True)
+    blog = models.ForeignKey(Blog,verbose_name='文章',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content[:25]
