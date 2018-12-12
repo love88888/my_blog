@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+<<<<<<< 8d74020a5db3dbc527b3f52e59962c14e59879eb
 
+=======
+# Create your models here.
+>>>>>>> 第er次
 class Category(models.Model):
     """
     文章分类
@@ -41,8 +45,12 @@ class Blog(models.Model):
     owner = models.ForeignKey(User,verbose_name='作者', on_delete=models.CASCADE,default='')
     create_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
     modify_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
+<<<<<<< 8d74020a5db3dbc527b3f52e59962c14e59879eb
     look_nums = models.IntegerField(verbose_name='浏览量', default=0)
     click_nums = models.IntegerField(verbose_name="点赞数",default=0)
+=======
+    click_nums = models.IntegerField(verbose_name='点击量', default=0)
+>>>>>>> 第er次
     category = models.ForeignKey(Category, verbose_name='文章类别',on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag, verbose_name='文章标签')
 
@@ -53,6 +61,7 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+<<<<<<< 8d74020a5db3dbc527b3f52e59962c14e59879eb
 class Collect_essay(models.Model):
       '''
       收藏文章的表
@@ -77,3 +86,27 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content[:25]
+=======
+# class  look_essay(models.Model):
+#     '''
+#     浏览文章记录表
+#     '''
+#     look_title = models.ForeignKey(Blog,verbose_name='浏览文章ID',on_delete=models.CASCADE)
+#     look_time = models.DateTimeField(verbose_name='浏览的时间',default=timezone.now)
+
+      # class Meta:
+      #     verbose_name = "浏览记录"
+      #     verbose_name_plural = verbose_name
+#
+#     def __str__(self):
+#        return self.look_title
+
+# class collect_essay(models.Model):
+#       '''
+#       收藏文章的表
+#       '''
+#       collect_title= models.ForeignKey()
+      # class Meta:
+      #     verbose_name = "浏览记录"
+      #     verbose_name_plural = verbose_name
+>>>>>>> 第er次

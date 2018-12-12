@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<<<<<<< 8d74020a5db3dbc527b3f52e59962c14e59879eb
 {% block css %}
     <style>
     #content_index{
@@ -46,3 +47,24 @@
 
 {% endblock content%}
 
+=======
+{% block header %}
+  <div class='jumbotron'>
+      <h1>欢迎</h1>
+  </div>
+{% endblock header%}
+
+{% block content %}
+  <h2>
+    <a href="{% url 'users:login' %}">登录</a>
+  </h2>
+    <h1><a href="">文章</a></h1>
+    {% for article in articles %}
+        <a href="">{{ article.title }}</a>
+        <br/>
+    {% endfor %}
+    <a href="/users/login">登录</a>
+{% endblock content%}flask.__version__
+
+
+>>>>>>> 第er次

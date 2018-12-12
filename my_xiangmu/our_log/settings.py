@@ -59,7 +59,11 @@ ROOT_URLCONF = 'our_log.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< 8d74020a5db3dbc527b3f52e59962c14e59879eb
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
+=======
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+>>>>>>> 第er次
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
