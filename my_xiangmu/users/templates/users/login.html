@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>游圈登录</title>
-        {% block scc %}
-    <link rel="stylesheet" href="/static/css/login.css" type="text/css">
-        {% endblock %}
-    <script>
-        function tz(){
-        window.location.href="{% url 'users:register'%}";
-        }
-    </script>
-
-</head>
-<body>
-    <div class="headtop"></div>
-    <div class="login">
-    <h1>欢迎来到游圈</h1>
-
-    <form action="" method="post">
-        {% csrf_token %}
-
-    <input type="text" name="username" placeholder="用户名" required="required" class="form-control">
-    <input type="password" name="password" placeholder="密  码" required="required" class="form-control">
-    <button type="submit">登录</button>
-        <button class="c1" type="submit" onclick="tz()"><a href="{% url 'users:register' %} ">注册</a></button>
-    </form>
-
-    </div>
-
-
-=======
 {#{% block header %}#}
 {#  <form method="post" action="{% url 'users:login' %}" class="form">#}
 {#    {% csrf_token %}#}
@@ -61,6 +27,5 @@
         <input id="password" type="password" name="password" value="{{ password }}"><br/>
         <input type="submit" value="登录">
     </form>
->>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
 </body>
 </html>

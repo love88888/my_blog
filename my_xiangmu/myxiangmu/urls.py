@@ -5,12 +5,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-<<<<<<< HEAD
-    url(r'^blog/(?P<blog_id>\d+)', views.article, name="blog"),
-    url(r'^add_comment', views.post, name='add_comment'),
-=======
     url(r'^blog/(?P<blog_id>\d+)/$',views.article,name="blog"),      #博客详情页
     url(r'^category/(?P<category_id>\d+)$',views.category, name="category"), #分类
     url(r"^article_add/", views.article_add, name="article_add")  #评论
->>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
 ]

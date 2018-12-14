@@ -14,25 +14,6 @@
 {% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
-    {% csrf_token %}
-  <h2>
-    {% if user.is_authenticated %}
-        <li><a>hello,{{ user.username }}</a></li>
-    {% else %}
-        <a href="{% url 'users:login' %}">登录</a>
-    {% endif %}
-  </h2>
-    <h1><a href="">文章</a></h1>
-    {% for article in articles %}
-        <div id="content_index">
-           <div>
-
-               <a href="blog/{{ article.id }}">{{ article.title }}</a>
-           </div>
-            <div>
-                <h5>简介:{{article.content |truncatechars:100}}</h5>
-=======
 {#    <h1><a href="{% url 'myxiangmu:article' %}">文章</a></h1>#}
 {#　　　文章分类搜索#}
     <h2>分类</h2>
@@ -50,7 +31,6 @@
            </div>
             <div>
                 <h5>正文:{{article.content |truncatechars:200}}</h5>
->>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
             </div>
             <div class='title'>
                 <h5> 作者:{{article.owner}}</h5>
@@ -61,10 +41,8 @@
 
         <br/>
     {% endfor %}
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
 {% endblock content%}
+

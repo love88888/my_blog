@@ -1,11 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-<<<<<<< HEAD
-from django import forms
-
-=======
->>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
 
 # Create your models here.
 class Category(models.Model):
@@ -48,7 +43,7 @@ class Blog(models.Model):
     create_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
     modify_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     look_nums = models.IntegerField(verbose_name='浏览量', default=0)
-    click_nums  = models.IntegerField(verbose_name="点赞数",default=0)
+    click_nums = models.IntegerField(verbose_name="点赞数",default=0)
     category = models.ForeignKey(Category, verbose_name='文章类别',on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag, verbose_name='文章标签')
 
@@ -59,44 +54,6 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
-<<<<<<< HEAD
-class Comment(models.Model):
-    #ForeignKey(User,verbose_name='昵称',on_delete=models.CASCADE)
-    username = models.CharField(verbose_name='昵称',max_length=10)
-    content = models.TextField(verbose_name='评论内容')
-    create_time = models.DateTimeField(verbose_name='评论时间',auto_now_add=True)
-    blog = models.ForeignKey(Blog,verbose_name='文章',on_delete=models.CASCADE)
-
-
-    def __str__(self):
-        return self.content[:25]
-
-
-
-
-                # class  look_essay(models.Model):
-#     '''
-#     浏览文章记录表
-#     '''
-#     look_title = models.ForeignKey(Blog,verbose_name='浏览文章ID',on_delete=models.CASCADE)
-#     look_time = models.DateTimeField(verbose_name='浏览的时间',default=timezone.now)
-
-      # class Meta:
-      #     verbose_name = "浏览记录"
-      #     verbose_name_plural = verbose_name
-#
-#     def __str__(self):
-#        return self.look_title
-
-# class collect_essay(models.Model):
-#       '''
-#       收藏文章的表
-#       '''
-#       collect_title= models.ForeignKey()
-      # class Meta:
-      #     verbose_name = "浏览记录"
-      #     verbose_name_plural = verbose_name
-=======
 class Collect_essay(models.Model):
       '''
       收藏文章的表
@@ -121,4 +78,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content[:25]
->>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
