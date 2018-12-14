@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,3 +55,17 @@
 
 </body>
 </html>
+=======
+{% block content %}
+
+  <form method="post" action="{% url 'users:register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button name="submit">register</button>
+    <input type="hidden" name="next"
+      value="{% url 'myxiangmu:index' %}" />
+  </form>
+    
+{% endblock content %}
+>>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac

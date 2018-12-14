@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
-{% block header %}
-  <div class='jumbotron'>
-      <h1>欢迎</h1>
-  </div>
-{% endblock header%}
+{% block css %}
+    <style>
+    #content_index{
+       font-size:18px;
+       color:black;
+    }
+    .title h5{
+        height:23px ;
+        width:200px;
+        float: left
+    }
+    </style>
+{% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
     {% csrf_token %}
   <h2>
     {% if user.is_authenticated %}
@@ -23,6 +32,25 @@
            </div>
             <div>
                 <h5>简介:{{article.content |truncatechars:100}}</h5>
+=======
+{#    <h1><a href="{% url 'myxiangmu:article' %}">文章</a></h1>#}
+{#　　　文章分类搜索#}
+    <h2>分类</h2>
+    {% for c in categorys %}
+        <a href="/category/{{ c.id }}">{{ c }}</a>
+    {% endfor %}
+    <h3>========================</h3>
+    <h2>文章</h2>
+{#    文章的详情页#}
+    {% for article in articles %}
+        <div id="content_index">
+           <div>
+               {{ username }}
+               <a href="/blog/{{ article.id }}/">{{ article.title }}</a>
+           </div>
+            <div>
+                <h5>正文:{{article.content |truncatechars:200}}</h5>
+>>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
             </div>
             <div class='title'>
                 <h5> 作者:{{article.owner}}</h5>
@@ -33,4 +61,10 @@
 
         <br/>
     {% endfor %}
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
 {% endblock content%}

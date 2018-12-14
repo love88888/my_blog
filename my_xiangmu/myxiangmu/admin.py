@@ -9,5 +9,12 @@ admin.site.register(Tag)
 
 from .models import Blog
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ["title",'owner','click_nums','category','create_time','modify_time']
+    list_display = ["title",'owner','click_nums','category','create_time','modify_time','look_nums']
 admin.site.register(Blog,BlogAdmin)
+
+from .models import Comment
+admin.site.register(Comment)
+
+
+from .models import Collect_essay
+admin.site.register(Collect_essay)

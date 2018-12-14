@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+<<<<<<< HEAD
 from myxiangmu.models import Blog, Category, Tag,Comment
 from myxiangmu.forms import CommentForm
 
+=======
+
+# from myxiangmu.forms import CommentForm
+from myxiangmu.models import Blog, Category, Tag,Comment
+>>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
 
 from django.views import View
 from . import models
@@ -27,6 +33,7 @@ from . import models
 
 def index(request):
      # 获取所有的条数
+<<<<<<< HEAD
     articles = models.Blog.objects.all()
     return render(request, 'index.html', {'articles':articles})
 
@@ -79,4 +86,35 @@ def post(request):
 
 
 
+=======
+    articles = Blog.objects.all()
+    categorys = Category.objects.all()
+    return render(request, 'index.html', {'articles':articles,"categorys":categorys})
+
+
+def article(request, blog_id):
+        blog = Blog.objects.get(id=blog_id)
+        comment = Comment.objects.filter(blog_id=blog_id)
+        return render(request, 'article_content.html', {'blog': blog,'comment':comment})
+
+def category(request,category_id):
+    blog = Category.objects.get(id=category_id)
+    blogs = Blog.objects.filter(category_id=blog.id)
+    return render(request,'category.html',{'blogs':blogs})
+
+
+
+def article_add(request):
+    if request.method=="POST":
+        #添加进数据库
+        username= request.POST.get("username")
+        created_time = request.POST.get("created_time")
+        blog_id = request.POST.get("blog_id")
+        content =  request.POST.get("content")
+        Comment.objects.create(username=username,created_time=created_time,content=content,blog_id=blog_id)
+        #查询博客的详情属性
+        blog = Blog.objects.get(id=blog_id)
+        comment = Comment.objects.filter(blog_id=blog_id)
+        return render(request, 'article_content.html', {'blog': blog,'comment':comment})
+>>>>>>> d9ee139f14358d29d802e377ca5c730be9f557ac
 
