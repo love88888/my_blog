@@ -1,0 +1,142 @@
+body,input{
+margin: 0;
+padding: 0;
+}
+
+
+input{
+display: inline-block;
+background: #fff;
+}
+.xiao-container{
+width: 100%;
+}
+.xiao-register-box{
+position: relative;
+
+background:#ffffff;
+
+}
+.xiao-title-box{
+position: absolute;
+width: 300px;
+height: 50px;
+margin-left: 780px;
+margin-top: 160px;
+text-align: center;
+font-size: 28px;
+font-weight: 800;
+line-height: 50px;
+}
+.xiao-username-box{
+position: absolute;
+width: 420px;
+height: 40px;
+line-height: 40px;
+margin-top:260px;
+margin-left:680px;
+font-weight: 700;
+}
+.xiao-username-input{
+
+display: inline-block;
+margin-left: 45px;
+}
+#username{
+height: 35px;
+width: 290px;
+border: 2px solid #ccc;
+border-radius: 5px;
+
+}
+.xiao-userPassword-box{
+position: absolute;
+width: 420px;
+height: 40px;
+line-height: 40px;
+margin-top:340px;
+margin-left:680px;
+font-weight: 700;
+}
+.xiao-userPassword-input{
+display: inline-block;
+margin-left: 61px;
+}
+#userPassword{
+height: 35px;
+width: 290px;
+border: 2px solid #ccc;
+border-radius: 5px;
+}
+.xiao-userRePassword-box{
+position: absolute;
+width: 420px;
+height: 40px;
+line-height: 40px;
+margin-top:420px;
+margin-left:680px;
+font-weight: 700;
+}
+.xiao-userRePassword-input{
+display: inline-block;
+margin-left: 28px;
+}
+#userRePassword{
+height: 35px;
+width: 290px;
+border: 2px solid #ccc;
+border-radius: 5px;
+}
+
+.xiao-userPhone-input{
+display: inline-block;
+margin-left: 28px;
+}
+
+.xiao-userGender-box{
+position: absolute;
+width: 420px;
+height: 40px;
+line-height: 40px;
+margin-top:660px;
+margin-left:110px;
+font-weight: 700;
+}
+.xiao-userGender-input{
+display: inline-block;
+margin-left: 62px;
+}
+.xiao-require{
+color: red;
+}
+.xiao-submit-box{
+position:absolute;
+width: 80px;
+height: 40px;
+line-height: 40px;
+margin-top: 510px;
+margin-left:520px;
+border-radius: 5px;
+
+}
+#xiao-submit-button{
+display: inline-block;
+width: 80px;
+height: 40px;
+border-radius: 5px;
+margin-left:280px;
+
+
+
+}
+.xiao-goLogin-box{
+display: inline-block;
+width: 80px;
+height: 40px;
+position:absolute;
+width: 150px;
+height: 20px;
+margin-top: 520px;
+margin-left:930px;
+
+}

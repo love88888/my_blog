@@ -6,14 +6,31 @@
 {% endblock header%}
 
 {% block content %}
+    {% csrf_token %}
   <h2>
-    <a href="{% url 'users:login' %}">Register an account</a>
+    {% if user.is_authenticated %}
+        <li><a>hello,{{ user.username }}</a></li>
+    {% else %}
+        <a href="{% url 'users:login' %}">登录</a>
+    {% endif %}
   </h2>
     <h1><a href="">文章</a></h1>
     {% for article in articles %}
-        <a href="">{{ article.title }}</a>
+        <div id="content_index">
+           <div>
+
+               <a href="blog/{{ article.id }}">{{ article.title }}</a>
+           </div>
+            <div>
+                <h5>简介:{{article.content |truncatechars:100}}</h5>
+            </div>
+            <div class='title'>
+                <h5> 作者:{{article.owner}}</h5>
+                <h5>发表时间:{{article.create_time}}</h5>
+                <h5>点击量:{{article.click_nums}}</h5>
+            </div>
+        </div>
+
         <br/>
     {% endfor %}
-
 {% endblock content%}
-

@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django import forms
+
+
 # Create your models here.
 class Category(models.Model):
     """
@@ -52,7 +55,21 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
-# class  look_essay(models.Model):
+class Comment(models.Model):
+    #ForeignKey(User,verbose_name='昵称',on_delete=models.CASCADE)
+    username = models.CharField(verbose_name='昵称',max_length=10)
+    content = models.TextField(verbose_name='评论内容')
+    create_time = models.DateTimeField(verbose_name='评论时间',auto_now_add=True)
+    blog = models.ForeignKey(Blog,verbose_name='文章',on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.content[:25]
+
+
+
+
+                # class  look_essay(models.Model):
 #     '''
 #     浏览文章记录表
 #     '''
