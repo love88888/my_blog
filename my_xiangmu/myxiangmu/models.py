@@ -42,7 +42,8 @@ class Blog(models.Model):
     owner = models.ForeignKey(User,verbose_name='作者', on_delete=models.CASCADE,default='')
     create_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
     modify_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
-    click_nums = models.IntegerField(verbose_name='点击量', default=0)
+    look_nums = models.IntegerField(verbose_name='浏览量', default=0)
+    click_nums  = models.IntegerField(verbose_name="点赞数",default=0)
     category = models.ForeignKey(Category, verbose_name='文章类别',on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag, verbose_name='文章标签')
 
@@ -53,34 +54,23 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
-# class  look_essay(models.Model):
-#     '''
-#     浏览文章记录表
-#     '''
-#     look_title = models.ForeignKey(Blog,verbose_name='浏览文章ID',on_delete=models.CASCADE)
-#     look_time = models.DateTimeField(verbose_name='浏览的时间',default=timezone.now)
+class Collect_essay(models.Model):
+      '''
+      收藏文章的表
+      '''
+      collect_title= models.ForeignKey(Blog,verbose_name="收藏文章题目",on_delete=models.CASCADE)
+      collect_user = models.ForeignKey(User,verbose_name="收藏者",on_delete=models.CASCADE)
+      class Meta:
+          verbose_name = "收藏"
+          verbose_name_plural = verbose_name
 
-      # class Meta:
-      #     verbose_name = "浏览记录"
-      #     verbose_name_plural = verbose_name
-#
-#     def __str__(self):
-#        return self.look_title
-
-# class collect_essay(models.Model):
-#       '''
-#       收藏文章的表
-#       '''
-#       collect_title= models.ForeignKey()
-      # class Meta:
-      #     verbose_name = "浏览记录"
-      #     verbose_name_plural = verbose_name
+      def __str__(self):
+          return self.collect_title
 
 class Comment(models.Model):
     '''
       评论表
     '''
-    # ForeignKey(User,verbose_name='昵称',on_delete=models.CASCADE)
     username = models.CharField(verbose_name='昵称',max_length=10)
     content = models.TextField(verbose_name='评论内容')
     created_time = models.DateTimeField(verbose_name='评论时间',auto_now_add=True)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from myxiangmu.forms import CommentForm
+# from myxiangmu.forms import CommentForm
 from myxiangmu.models import Blog, Category, Tag,Comment
 
 from django.views import View
@@ -44,12 +44,16 @@ def category(request,category_id):
 
 
 
-class AddCommentView(View):
-    def post(self, request):
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment_form.save()
-            return HttpResponse('{"status": "success"}', content_type='application/json')
-        else:
-            return HttpResponse('{"status": "fail"}', content_type='application/json')
+def article_add(request):
+    if request.method=="POST":
+        #添加进数据库
+        username= request.POST.get("username")
+        created_time = request.POST.get("created_time")
+        blog_id = request.POST.get("blog_id")
+        content =  request.POST.get("content")
+        Comment.objects.create(username=username,created_time=created_time,content=content,blog_id=blog_id)
+        #查询博客的详情属性
+        blog = Blog.objects.get(id=blog_id)
+        comment = Comment.objects.filter(blog_id=blog_id)
+        return render(request, 'article_content.html', {'blog': blog,'comment':comment})
 
