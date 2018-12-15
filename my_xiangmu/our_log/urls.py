@@ -6,7 +6,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),  #后台
-    # url(r'^$', IndexView.as_view(), name='index'),
     url(r'', include('myxiangmu.urls',namespace='myxiangmu')),    #首页的url
     url(r'^users/',include('users.urls',namespace="users")),        #登录注册
 ]
