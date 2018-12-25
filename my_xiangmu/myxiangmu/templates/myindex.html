@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>游圈_个人中心</title>
+	<link href="/static/css/base.css" rel="stylesheet">
+	<script src="/static/js/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/static/js/comm.js"></script>
+  <script src="/static/js/jQuery1.11.3_20150618.chm"></script>
+</head>
+<body class="BD">
+<header>
+  <div class="profile">
+    <div class="avatar fl"><img src="/static/images/avatar.jpg"></div>
+    <div class="guanzhu fl">
+      <ul>
+        <li ><img src="/static/images/nianling.png"><span>生日:{{ per.birth }}</span></li>
+        <li><img src="/static/images/nianling.png"><span>昵称：{{ per.unichen }}</span></li>
+        <li><img src="/static/images/qq.png"><span>QQ：{{ per.wechart }}</span></li>
+        <li><img src="/static/images/qq.png"><span>phone：{{ per.phone }}</span></li>
+      </ul>
+    </div>
+    <div class="username">Baby的小家</div>
+  </div>
+  <nav>
+    <ul id="starlist"> 
+      <li><a href="{% url 'myxiangmu:myindex' %}">我的主页</a></li>
+      <li><a href="{% url 'myxiangmu:time' %}">我的收藏</a></li>
+      <li><a href="{% url 'myxiangmu:submit' %}">发表博文</a></li>
+      <li><a href="{% url 'myxiangmu:perSet1' %}">个人设置</a></li>
+      <li><a href="{% url 'myxiangmu:index' %}">返回首页</a></li>
+      <li class="userexit"><a href="{% url 'users:logout' %}">注销用户</a></li>
+    </ul>
+  </nav>
+</header>
+<article>
+  <main class="r_box">
+    <!--<div class="blogbox">-->
+      <!--<ul>-->
+        <!--<li> <i class="feed-avatar"><img src="/static/images/avatar.jpg"></i>-->
+          <!--<h2><a href="/">个人博客，属于我的小世界！</a></h2>-->
+          <!--<p class="feed-info">本文很长，记录了我博客建站初到现在的过程，还有我从毕业到现在的一个状态，感谢您的阅读，如果你还是学生，也许你能从此文中，找到我们曾经相似的地方。如果你已经工作，有自己的博客，我想，你并没有忘记当初建立个人博客的初衷吧！</p>-->
+          <!--<span class="feed-img"><a href="/"><img src="/static/images/01.png"><img src="/static/images/02.png"><img src="/static/images/03.png"><img src="/static/images/04.png"><img src="/static/images/05.png"></a></span>-->
+       <!--<p class="feed-date"><span class="fd01">[宝宝日记]</span><span class="fd01"><a href="/">2018-08-24</a></span><span class="fd01">阅读（90）</span><span class="fd01">喜欢（90）</span></p>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    {% for u in blog %}
+    <div class="bloglist">
+      <li><i><a href="/tuseday/diary/19.html" title="一个三十而立的男程序员真实讲述：代码搅乱我的生活"><img src="/static/images2/{{u.title}}.jpg"></a></i>
+        <h3><a href="/blog/{{ u.id }}" target="_blank">{{u.title}}</a></h3>
+        <p>{{u.content|truncatechars:200}}<p:property value="message" escapeHtml="false"/></p>
+        <p class="feed-date"><span class="fd01">{{u.category.name}}</span><span class="fd01"><a href="/">{{u.create_time}}</a></span><span class="fd01">阅读（{{ u.look_nums }}）</span><span class="fd01">点赞（{{ u.click_nums }}）</span></p>
+      </li>
+      </div>
+    {% endfor %}
+  </main>
+  <aside class="l_box">
+    <div class="fenlei">
+      <ul>
+        <h2>文章分类</h2>
+        <li><a href="/category/1">旅游（{{sort1}}）</a></li>
+        <li><a href="/category/2">美食（{{sort2}}）</a></li>
+        <li><a href="/category/3">体育（{{sort3}}）</a></li>
+        <li><a href="/category/4">影视（{{sort4}}）</a></li>
+        <li><a href="/category/5">游戏（{{sort5}}）</a></li>
+        <li><a href="/category/6">音乐（{{sort6}}）</a></li>
+      </ul>
+    </div>
+  </aside>
+</article>
+<div class="blank"></div>
+<footer>
+  <p><a href="http://www.yangqq.com" target="_blank">For The Dream</a> <a href="/">蜀ICP备11002373号-1</a></p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+</body>
+</html>
+

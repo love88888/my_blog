@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章详情页</title>
+    {% block css %}
+    <link rel="stylesheet" href="/static/css/infos.css">
+    {% endblock css %}
+    {% block js %}
+    <script src="/static/js/wwww.js"></script>
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script>
+    {# 评论#}
+        $(function () {
+            $("#jsStayBtn").on('click', function(){
+                var username = $("#js-name").val();
+                var content = $("#js-content").val();
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url:"/add_comment/",
+                    data:{'username': username,'content': content, 'blog': {{ blog.id }}},
+                    dateType:"json",
+                    async: true,
+                    beforeSend:function(xhr, settings){
+                    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                },
+                    success: function(data) {
+                        if(data.status == 'success'){
+                            alert("提交成功");
+                             window.location.reload();//刷新当前页面.
+                        }else if(data.status == 'fail'){
+    {#                        $('#jsCompanyTips').html(data.msg)#}
+                            alert("评论错误，请重新评论");
+                        }
+                    },
+                });
+            });
+        })
+
+    </script>
+    {% endblock %}
+</head>
+{% block content %}
+<body>
+    <article>
+        <h1 class="t_nav">
+            <p class="n1">文章</p>
+        </h1>
+        <div class="infosbox">
+            <div class="newsview">
+                <h2 class="news_title"><b>{{ blog.title }}</b></h2>
+                <div class="bloginfo">
+					<ul>
+						<li class="author"><a href="#">{{ blog.owner }}</a></li>
+						<li class="lmname"><a href="#">{{ blog.category }}</a></li>
+						<li class="timer">{{blog.create_time}}</li>
+						<li class="view">{{ blog.look_nums }}</li>
+						<li class="like">{{ blog.click_nums }}</li>
+					</ul>
+                </div>
+                <div class="news_about"><strong>{{ blog.content|truncatechars:100}}</strong>
+
+                </div>
+                <div class="news_con">
+                    <pre>{{ blog.content }}</pre>
+
+                </div>
+                <div class="share">
+                    <p class="diggit"><a>赞了<span>{{ blog.click_nums }}</span>次</a></p>
+
+                    <p class="dasbox">
+                        <a><span>收藏</span></a>
+
+                    </p>
+                </div>
+                <div class="nextinfo">
+                        <p>上一篇：
+                            {% if has_prev %}
+                                <a href="/blog/{{blog_prev.id }}" rel="prev" title="{{ blog_prev.title }}">
+                                    <i class="fa fa-chevron-left"></i> {{ blog_prev.title }}
+                                </a>
+                            {% else %}
+                                <a href="/">返回列表</a>
+                            {% endif %}
+                        </p>
+                        <p>下一篇：
+                            {% if has_next %}
+                                <a href="/blog/{{ blog_next.id }}" rel="next" title="{{ blog_next.title }}">
+                                    {{ blog_next.title }} <i class="fa fa-chevron-right"></i>
+                                </a>
+                            {% else %}
+                                <a href="/">返回列表</a>
+                            {% endif %}
+                        </p>
+                </div>
+                <div class="news_pl">
+                    <h2>文章评论</h2>
+                    <ul>
+                        <div class="gbko">
+                            <div class="l_box f_l" style="padding:20px">
+                                <div class="commentstitle">
+                                    <h3 id="comments">到现在<span class="commentsnumber"> {{comment_nums}}</span>条评论</h3>
+                                </div>
+                                    {% for x in comment %}
+                                    <ol class="commentlist">
+                                            <li>
+
+                                                    <div class="top"><a href='#'  class='url'>{{ x.username }}</a>
+                                                        <span class="time"> @
+                                                            <a href="#" title="">{{ x.create_time }}</a>
+                                                            <a href="#" class="replyComment">回复</a>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="body">
+                                                        <p>{{ x.content }}</p>
+                                                    </div>
+
+                                            </li>
+
+                                    </ol>
+                                        {% empty %}
+                                            暂无评论
+                                    {% endfor %}
+                                <div id="commentform">
+                                    <h3 id="respond">在这添加你的留言！</h3>
+                                    <form  class="comment-form" id="jsStayForm">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+
+                                            <input name="name" type="hidden" class="#" id="js-name" value="{{ user.username }}">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="comment">评论:</label>
+                                            <textarea name="content" class="form-control" id="js-content" rows="5" placeholder="不超过30个字"></textarea>
+                                            {{ comment_form.content.errors }}
+                                        </div>
+                                             <p class="error company-tips" id="jsCompanyTips"></p>
+
+                                            <button class="btn" type="button" id="jsStayBtn" value="发表">发表</button>
+                                    </form>
+
+
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </article>
+
+
+</body>
+</html>
+{% endblock %}
+
+

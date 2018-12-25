@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Paging</title>
+    {% block css %}
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+
+
+    {% endblock %}
+    {% block js %}
+        	<script src="/static/js/jquery-1.11.3.js"></script>
+	<script src="/static/js/forpage.js"></script>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+		<div class="container">
+<!-- 	<div class="row clearfix"> -->
+<!-- 		<div class="col-md-12 column"> -->
+			<div class="tabbable" id="tabs-966431">
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-74374">
+						<div id="news-lis">
+							{% for b in blogs %}
+                            <div>
+					        <a href="/blog/{{ b.id }}/">{{ b.title }}</a>
+					        <h5>{{ b.content |truncatechars:200 }}</h5>
+					            <span> 作者:{{b.owner}}</span>
+					            <span>发表时间:{{b.create_time}}</span>
+					            <span>点击量:{{b.click_nums}}</span>
+					        </div>
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<div  class="c-pages">
+						    <div class="cp-item">
+						        <span>共</span>
+						        <span id="cp-count">0</span>
+						        <span>条</span>
+						    </div>
+						    <div class="cp-item">
+						        <span id="curr-page">1</span>
+						        <span>/</span>
+						        <span id="total-page">1</span>
+						    </div>
+						    <div class="cp-item">
+						        <button id="home">首页</button>
+						        <button id="prev">上页</button>
+						        <button id="next">下页</button>
+						        <button id="last">尾页</button>
+						    </div>
+						    <div class="cp-item ">
+						        <button id="goTo">转到</button>
+						        <input type="number" id="goToPage">
+						        <span>页</span>
+						    </div>
+						</div>
+</body>
+</html>
+{% endblock content %}

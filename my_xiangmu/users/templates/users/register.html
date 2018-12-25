@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>游圈注册</title>
+	<link rel="stylesheet" href="/static/css/register.css" type="text/css">
+</head>
+<body>
+	<div class="xiao-container">
+
+		<div class="xiao-register-box">
+
+			<div class="xiao-title-box">
+				<span>注    册</span>
+			</div>
+			<form action="" method="post">
+				{% csrf_token %}
+				<div class="xiao-username-box">
+					<span class="xiao-require">*</span>
+
+					<label for="username" class="form-control">用户名</label>
+                 <div class="xiao-username-input">
+                     <input type="text" id="username" name="username" placeholder="请输入用户名 长度:8-20个字符" />
+                 </div>
+                 </div>
+
+				<div class="xiao-userPassword-box">
+					<span class="xiao-require">*</span>
+					<label for="userPassword" class="form-control">密码</label>
+					<div class="xiao-userPassword-input">
+						<input type="password" id="userPassword" name="upwd" placeholder="请输入密码 长度:8-20个字符" />
+					</div>
+				</div>
+
+				<div class="xiao-userRePassword-box">
+				<span class="xiao-require">*</span>
+						<label for="userRePassword" class="form-control">确认密码</label>
+					<div class="xiao-userRePassword-input">
+						<input type="password" id="userRePassword" name="upwds" placeholder="请重复输入密码" />
+					</div>
+				</div>
+
+				<div class="xiao-submit-box">
+					<input id = "xiao-submit-button" type="submit" value="注册" href="{% url 'users:login'%}">
+				</div>
+
+				<div class="xiao-goLogin-box">
+					<a href="{% url 'users:login'%}" onclick="tz()">已有账号？去登录</a>
+
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+</body>
+</html>

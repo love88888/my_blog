@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title></title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+   <link href="/static/css/base_index.css" rel="stylesheet">
+  <link href="/static/css/index.css" rel="stylesheet">
+     {% block css %}
+     {% endblock %}
+
+     {% block js %}
+     {% endblock %}
+ </head>
+ <body>
+	<header id="header">
+		<!--menu begin-->
+		<div class="menu">
+			<nav class="nav" id="topnav">
+				<h1 class="logo"><a href="{% url 'myxiangmu:index' %}">You_Quan</a></h1>
+				<li><a href="/">网站首页</a></li>
+                <li><a href="/category/1">旅游</a></li>
+                <li><a href="/category/2">美食</a></li>
+                <li><a href="/category/3">体育</a></li>
+                <li><a href="/category/4">影视</a></li>
+                <li><a href="/category/5">游戏</a></li>
+                <li><a href="/category/6">音乐</a></li>
+
+
+				<li id="searsh_box">
+					<div id="box">
+						<input type="text" name="search" placeholder="请输入搜索内容">
+						<div id="search">搜索</div>
+					</div>
+
+				</li>
+
+			</nav>
+		</div>
+
+        {% if user.is_authenticated %}
+            <a id="login" target="_blank">Hello, {{ user.username }}.</a>
+            <a href="{% url 'users:logout' %}" id="register" target="_blank">登出</a>
+        {% else %}
+		<a href="users/login/" id="login" target="_blank">你好,请登录</a>
+		<a href="users/register/" id="register" target="_blank">注册</a>
+        {% endif %}
+
+	</header>
+                    {% block content %}
+
+                    {% endblock content %}
+				 </div>
+
+ </body>
+</html>

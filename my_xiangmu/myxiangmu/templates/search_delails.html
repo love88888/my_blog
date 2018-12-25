@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SEARCH</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<script src="/static/js/jquery-1.11.3.js"></script>
+	<script src="/static/js/forpage.js"></script>
+	<style>
+		.origin{
+			height: 40px;
+			width: 800px;
+		}
+		.origin>p{
+			float: left;
+			margin-right:20px;
+			}
+	    .pagelist pagebg{
+			text-align:center;
+			margin-top:50px; 
+			}
+		.pagelist pagebg a,.pagelist pagebg input{
+			text-decoration: none;
+			border: 1px solid #f9d52b;
+			padding: 5px 7px;
+			color: #767675;
+			cursor: pointer;
+			margin-right:20px
+		}
+	</style>
+</head>		
+<body>
+	<div class="container">
+<!-- 	<div class="row clearfix"> -->
+<!-- 		<div class="col-md-12 column"> -->
+			<div class="tabbable" id="tabs-966431">
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-74374">
+						<ul id="news-lis">
+                                {% for x in Sblog %}
+                                    <li>
+                                        <div>
+									        <a href="/blog/{{ x.id }}/" id="abc">
+										        {{ x.title }}
+									        </a>
+								        </div>
+								        <div>
+									        <p>
+                                                {{ x.content }}
+                                            </p>
+								        </div>
+								        <div class="origin">
+									        <p>作者：{{ x.owner }}</p>
+									        <p>来源：{{ x.category }}</p>
+									        <p>时间:{{ x.create_time }}</p>
+									        <p>点击量:{{ x.look_nums }}</p>
+								        </div>
+                                    </li>
+                                {% endfor %}
+						</ul>
+						<div  class="c-pages">
+						    <div class="cp-item">
+						        <span>共</span>
+						        <span id="cp-count">0</span>
+						        <span>条</span>
+						    </div>
+						    <div class="cp-item">
+						        <span id="curr-page">1</span>
+						        <span>/</span>
+						        <span id="total-page">1</span>
+						    </div>
+						    <div class="cp-item">
+						        <button id="home">首页</button>
+						        <button id="prev">上页</button>
+						        <button id="next">下页</button>
+						        <button id="last">尾页</button>
+						    </div>
+						    <div class="cp-item">
+						        <button id="goTo">转到</button>
+						        <input type="number" id="goToPage">
+						        <span>页</span>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
+    </div>
+</body>
+</html>

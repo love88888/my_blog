@@ -1,0 +1,151 @@
+/*清除浏览器默认样式*/
+
+body,h1,h2,h3,h4,h5,h6,ul,ol,p{
+       margin:0;
+	   padding:0;
+	   list-style:none;
+}
+/*设置基础样式*/
+#container{
+   font:15px "微软雅黑","黑体";
+   color:#9a9a9a;
+}
+a{
+  text-decoration:none;
+  color: #9a9a9a;
+}
+a:hover{
+   color:#64a131;
+}
+/*行内块元素的垂直对齐*/
+
+img{
+   vertical-align:bottom;
+}
+/*外围结构标签的样式*/
+
+#container{
+  /*div ->d1 d2 d3 d4*/
+       width:990px;
+	   margin:0 auto;
+}
+/*1.导航栏样式*/
+
+#nav{
+     height:40px;
+	 background:#eee;
+/*	 文本垂直居中*/
+	 line-height:40px;
+
+}
+/*     1.1右侧导航*/
+.rightNav{
+/*     块元素设置浮动之后,宽度由内容决定*/
+     float:right;
+}
+.rightNav>li{
+    float:left;
+	padding:0 5px;
+/*	导航项分隔符实现一:
+    border-right :1px solid black;
+    height:15px;
+	margin-top:7px;
+	line-height:15px;
+	最后一个li元素特殊处理,不需要边框*/
+}
+.rightNav>li>b{
+    border-left:1px solid #9a9a9a;
+    margin-right:10px;
+}
+
+/*      1.2左侧导航*/
+.leftNav>li{
+        float:left;
+		padding-left:10px;
+}
+.leftNav u{
+/*  转换为行内块元素,设置宽高为0*/
+		display:inline-block;
+		width:0px;
+		height:0px;
+		border:5px solid transparent;
+		border-top:5px solid black;
+		position:relative;
+		top:3px;
+}
+
+/*2.横幅wrapper*/
+#wrapper img{
+/*  参照父元素对应属性的值,取百分比,等价于990px*/
+	  width:100%;
+/* 高度根据宽度等比缩放*/
+}
+/*只有第一张图片显示,其他图片隐藏*/
+.banner img:not(:first-child){
+	display:none;
+}
+
+/*3.小图推荐*/
+#adv{
+/*  解决行内元素水平方向由于换行导致的间隙问题:父元素设置font-size:0*/
+    font-size:0;
+}
+#adv img{
+    width:240px;
+	margin-right:10px;
+}
+#adv .lastImg{
+     margin:0;
+}
+/*4.主题信息*/
+
+#main{
+     margin-top:25px;
+}
+
+#main .goodsClass{
+      border-top:1px solid #ccc;
+	  padding-top:15px;
+	  margin-bottom:10px;
+}
+#main .goodsClass>a{
+      float:right;
+      color:#333;
+}
+/*信息展示  列表项.item*/
+#main .item{
+	 float:left;
+     width:190px;
+	 margin-right:10px;
+	 margin-bottom:5px;
+}
+#main .item .imgInfo{
+     width:190px;
+	 height:190px;
+	 overflow:hidden;
+}
+
+#main .item .imgInfo>img{
+     width:190px;
+	 transition: .2s;
+}
+#main .item .imgInfo>img:hover{
+      transform:scale(1.1);
+}
+
+/*购物车图标*/
+#main .item .content a{
+     float:right;
+}
+#main .content p{
+	margin:5px 0px 5px 8px;
+
+}
+#main .content span{
+	margin-left:15px;
+	color:#333;
+}
+/*每行最后一个li元素取消外边距*/
+#main .lastItem{
+      margin:0;
+}
